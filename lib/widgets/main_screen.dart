@@ -1,8 +1,8 @@
-import 'package:calorie_app/widgets/calorie_widget.dart';
+import 'package:calorie_app/widgets/calorie_screen.dart';
 import 'package:flutter/material.dart';
 
-/// Root widget which extends to {StatelessWidget}.
-class RootApp extends StatelessWidget {
+/// A [StatelessWidget] subclass.
+class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -11,6 +11,6 @@ class RootApp extends StatelessWidget {
         theme: ThemeData(
             primarySwatch: Colors.blue,
             visualDensity: VisualDensity.adaptivePlatformDensity),
-        home: CalorieCalculator(title: 'Calorie'));
+        home: CalorieScreen(title: 'Calorie'));
   }
 }

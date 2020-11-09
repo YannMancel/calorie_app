@@ -14,19 +14,21 @@ extension on ActivityFactor {
   String toShortString() => this.toString().split('.').last.toLowerCase();
 }
 
-/// A Calorie calculator widget which extends to {StatelessWidget}.
-class CalorieCalculator extends StatefulWidget {
+/// A [StatelessWidget] subclass.
+class CalorieScreen extends StatefulWidget {
   final String title;
 
-  CalorieCalculator({Key key, this.title}) : super(key: key);
+  CalorieScreen({Key key, this.title}) : super(key: key);
 
   @override
-  _CalorieCalculatorState createState() => _CalorieCalculatorState();
+  _CalorieScreenState createState() => _CalorieScreenState();
 }
 
-/// A Calorie calculator State which extends to {State<CalorieCalculator>}.
-class _CalorieCalculatorState extends State<CalorieCalculator> {
+/// A [State] of [CalorieScreen] subclass.
+class _CalorieScreenState extends State<CalorieScreen> {
+
   // FIELDS --------------------------------------------------------------------
+
   Sex _currentSex = Sex.MAN;
   double _age;
   double _size;
@@ -34,6 +36,7 @@ class _CalorieCalculatorState extends State<CalorieCalculator> {
   ActivityFactor _activityFactor;
 
   // METHODS -------------------------------------------------------------------
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -44,75 +47,82 @@ class _CalorieCalculatorState extends State<CalorieCalculator> {
                 backgroundColor: _getColorAccordingToSex()),
             body: Container(
                 padding: EdgeInsets.all(16.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Card(
-                          child: Container(
-                              height: MediaQuery.of(context).size.height / 2.0,
-                              margin: EdgeInsets.all(16.0),
-                              child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          _getText(Sex.WOMAN.toShortString(),
-                                              COLOR_FOR_WOMAN),
-                                          Switch(
-                                              value: _isMan(),
-                                              activeColor:
-                                                  _getColorAccordingToSex(),
-                                              onChanged: _actionToChangeSex),
-                                          _getText(Sex.MAN.toShortString(),
-                                              COLOR_FOR_MAN)
-                                        ]),
-                                    _getRaisedButton(
-                                        (_age == null)
-                                            ? 'Select your age'
-                                            : 'Your age is ${_age.toStringAsFixed(0)}',
-                                        _getColorAccordingToSex(),
-                                        _actionToChangeAge),
-                                    _getText(
-                                        (_size == null)
-                                            ? 'Select your Size'
-                                            : 'Your size is ${_size.toStringAsFixed(1)}cm',
-                                        _getColorAccordingToSex()),
-                                    Slider(
-                                        value: _size ?? 0.0,
-                                        min: 0.0,
-                                        max: 250,
-                                        inactiveColor: Colors.grey,
-                                        activeColor: _getColorAccordingToSex(),
-                                        onChanged: _actionToChangeSize),
-                                    TextField(
-                                        keyboardType: TextInputType.number,
-                                        decoration: InputDecoration(
-                                            labelText:
-                                                "Enter your weight in kilos",
-                                            labelStyle: TextStyle(
-                                                color:
-                                                    _getColorAccordingToSex())),
-                                        onChanged: _actionToChangeWeight),
-                                    _getText('What is your activity level?',
-                                        _getColorAccordingToSex()),
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          _getRadio(ActivityFactor.LOW,
-                                              _getColorAccordingToSex()),
-                                          _getRadio(ActivityFactor.MODERATE,
-                                              _getColorAccordingToSex()),
-                                          _getRadio(ActivityFactor.HIGH,
-                                              _getColorAccordingToSex())
-                                        ]),
-                                  ]))),
-                      _getRaisedButton('Calculate', _getColorAccordingToSex(),
-                          _actionToCalculateCalorie)
-                    ]))));
+                child: Column(children: [
+                  Card(
+                      elevation: 6.0,
+                      child: Container(
+                          margin: EdgeInsets.all(16.0),
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      _getText(Sex.WOMAN.toShortString(),
+                                          COLOR_FOR_WOMAN),
+                                      Switch(
+                                          value: _isMan(),
+                                          inactiveTrackColor:
+                                              _getColorAccordingToSex(),
+                                          activeTrackColor:
+                                              _getColorAccordingToSex(),
+                                          onChanged: _actionToChangeSex),
+                                      _getText(Sex.MAN.toShortString(),
+                                          COLOR_FOR_MAN)
+                                    ]),
+                                SizedBox(height: 20.0),
+                                _getRaisedButton(
+                                    (_age == null)
+                                        ? 'Select your age'
+                                        : 'Your age is ${_age.toStringAsFixed(0)}',
+                                    _getColorAccordingToSex(),
+                                    _actionToChangeAge),
+                                SizedBox(height: 20.0),
+                                _getText(
+                                    (_size == null)
+                                        ? 'Select your Size'
+                                        : 'Your size is ${_size.toStringAsFixed(1)}cm',
+                                    _getColorAccordingToSex()),
+                                Slider(
+                                    value: _size ?? 0.0,
+                                    min: 0.0,
+                                    max: 250,
+                                    inactiveColor: Colors.grey,
+                                    activeColor: _getColorAccordingToSex(),
+                                    onChanged: _actionToChangeSize),
+                                SizedBox(height: 20.0),
+                                TextField(
+                                    keyboardType: TextInputType.number,
+                                    decoration: InputDecoration(
+                                        labelText: "Enter your weight in kilos",
+                                        labelStyle: TextStyle(
+                                            color: _getColorAccordingToSex())),
+                                    onChanged: _actionToChangeWeight),
+                                SizedBox(height: 20.0),
+                                _getText('What is your activity level?',
+                                    _getColorAccordingToSex()),
+                                Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      _getRadio(ActivityFactor.LOW,
+                                          _getColorAccordingToSex()),
+                                      _getRadio(ActivityFactor.MODERATE,
+                                          _getColorAccordingToSex()),
+                                      _getRadio(ActivityFactor.HIGH,
+                                          _getColorAccordingToSex())
+                                    ]),
+                              ]))),
+                  Expanded(
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: _getRaisedButton(
+                            'Calculate',
+                            _getColorAccordingToSex(),
+                            _actionToCalculateCalorie),
+                  ))
+                ]))));
   }
 
   // -- UI --
@@ -145,14 +155,14 @@ class _CalorieCalculatorState extends State<CalorieCalculator> {
   void _actionToChangeSex(bool isMan) =>
       setState(() => _currentSex = (isMan) ? Sex.MAN : Sex.WOMAN);
 
-  Future<Null> _actionToChangeAge() async {
+  void _actionToChangeAge() async {
     final DateTime currentDate = DateTime.now();
 
     final DateTime dateSelected = await showDatePicker(
         context: context,
         initialDate: currentDate,
         firstDate: DateTime(1900),
-        lastDate: DateTime(currentDate.year + 1),
+        lastDate: currentDate,
         initialDatePickerMode: DatePickerMode.year);
 
     final int age = currentDate.year - dateSelected.year;
@@ -178,7 +188,7 @@ class _CalorieCalculatorState extends State<CalorieCalculator> {
 
   // -- Dialog --
 
-  Future<void> _showAlertDialog() async {
+  void _showAlertDialog() async {
     return showDialog<void>(
         context: context,
         barrierDismissible: false,
@@ -196,7 +206,7 @@ class _CalorieCalculatorState extends State<CalorieCalculator> {
         });
   }
 
-  Future<void> _showCalorieDialog() async {
+  void _showCalorieDialog() async {
     final result =
         _getCalories(_currentSex, _weight, _size, _age, _activityFactor);
 

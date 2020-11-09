@@ -1,16 +1,34 @@
 # calorie_app
 
-A Flutter application to calculate the calories per day.
+**Goal**: A Flutter application to calculate the calories per day.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Phone display
+<p align="middle">
+     <img src="./screenshots/phone_1.png" width="30%" height="30%"> <img src="./screenshots/phone_2.png" width="30%" height="30%">
+</p>
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Requirements
+* Computer (Windows, Mac or Linux)
+* Android Studio
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Setup the project in Android studio
+1. Download the project code, preferably using `git clone https://github.com/YannMancel/calorie_app.git`.
+2. In Android Studio, select *File* | *Open...*
+3. Select the project
+
+
+## Troubleshooting
+
+### No device available during the compilation and execution steps 
+* If none of device is present (*Available Virtual Devices* or *Connected Devices*),
+    * Either select `Create a new virtual device`
+    * or connect and select your phone or tablet
+     
+     
+## Useful
+* [Download Android Studio](https://developer.android.com/studio)
+* [Create a new virtual device](https://developer.android.com/studio/run/managing-avds.html)
+* [Enable developer options and debugging](https://developer.android.com/studio/debug/dev-options.html#enable)
